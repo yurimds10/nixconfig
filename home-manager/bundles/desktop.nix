@@ -1,34 +1,25 @@
 {
   config,
   pkgs,
-  inputs,
-  lib,
   ...
 }: {
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+  imports = [
+    ../config/i3/default.nix
+  ];
 
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
-
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     # Polkit
     polkit
     polkit_gnome
 
-    # Hyprland
-    waybar
-    hyprpaper
-    rofi-wayland
-    ags
-    wl-clipboard
-    slurp
-    grim
-    swappy
-    wlogout
+    # X11 Desktop
+    polybar
+    rofi
+    dunst
+    libnotify
+    nitrogen
+    picom
+    lxappearance
 
     # Audio
     pavucontrol
@@ -72,11 +63,11 @@
     gimp
     gnome.gnome-disk-utility
     gparted
-    nwg-look
     btop
     qbittorrent
     mission-center
     nvitop
+    flameshot
 
     # Themes
     gruvbox-gtk-theme

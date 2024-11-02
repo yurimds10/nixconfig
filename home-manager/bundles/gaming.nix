@@ -1,11 +1,12 @@
-{pkgs, ...}:
-
-{
-  environment.sessionVariables = {
+{ pkgs, ... }: {
+  
+  home.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
   };
 
-  environment.systemPackages = with pkgs; [
+  programs.mangohud.enable = true;
+
+  home.packages = with pkgs; [
     # Launchers
     lutris
     heroic
@@ -18,12 +19,9 @@
     # winetricks (all versions)
     winetricks
 
-    # native wayland support (unstable)
-    wineWowPackages.waylandFull
-
     # Emulators
     duckstation
-    pcsx2
+    ppsspp
     snes9x
 
     # Tools
