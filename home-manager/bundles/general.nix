@@ -31,7 +31,7 @@
     delta
     nushell
 
-    git
+    #git
     wget
     fastfetch
     ffmpeg
