@@ -4,10 +4,11 @@
 
   services.xserver = {
     enable = true;
-    desktopManager.xterm.enable = false;   
-    displayManager.defaultSession = "none+i3";
+    desktopManager.xterm.enable = false;
     windowManager.i3.enable = true;
   };
+
+  services.displayManager.defaultSession = "none+i3";
 
   programs.dconf.enable = true;
 }
