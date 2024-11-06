@@ -18,7 +18,7 @@
 
       bars = [];
 
-      fonts = [ "JetBrainsMono Nerd Font" ];
+      #fonts = [ "JetBrainsMono Nerd Font" ];
 
       gaps = {
         inner = 6;
@@ -110,13 +110,14 @@
           notification = false;
         }
         {
-          command = "${pkgs.nitrogen}/bin/nitrogen --restore";
+          command = "${pkgs.dunst}/bin/dunst";
           always = true;
-          notification = false;
+          notification = true;
         }
+
         {
           command = "${pkgs.polybar}/bin/polybar";
-          always = false;
+          always = true;
           notification = false;
         }
       ];

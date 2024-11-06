@@ -1,16 +1,11 @@
 {
   config,
-  inputs,
-  lib,
-  pkgs,
   ...
 }:{
   services.xserver.videoDrivers = ["nvidia"];
 
    # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-  };
+  hardware.graphics.enable = true;
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -18,6 +13,6 @@
     nvidiaSettings = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 }

@@ -23,7 +23,6 @@
   };
   
   # Enable sound with pipewire.
-  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -38,7 +37,7 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
 
       # Nerd Fonts
@@ -46,13 +45,12 @@
     ];
 
     fontconfig = {
+      enable = true;
       defaultFonts = {
-        serif = [  "Liberation Serif" "Vazirmatn" ];
+        serif = [  "New York Medium" ];
         sansSerif = [ "SF Pro Display" ];
         monospace = [ "JetBrainsMono Nerd Font" ];
       };
     };
   };
 }
-
-

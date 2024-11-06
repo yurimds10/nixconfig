@@ -1,5 +1,12 @@
 { pkgs, ... }: {
-  
+
+  imports = [
+    ../config/git/default.nix
+    ../config/fish/default.nix
+  ];
+
+  xdg.userDirs.enable = true;
+
   home.packages = with pkgs; [
     pciutils
     usbutils

@@ -30,7 +30,6 @@
     dxvk
     gamescope
     mangohud
-    steamPackages.steam-runtime
     glfw
 
     # Vulkan

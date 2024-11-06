@@ -1,10 +1,14 @@
 {
-  config,
   pkgs,
   ...
 }: {
   imports = [
+    ../config/gtk/default.nix
+    ../config/hyprland/default.nix
+    ../config/ags/default.nix
     ../config/i3/default.nix
+    ../config/lf/default.nix
+    ../config/kitty/default.nix
   ];
 
   home.packages = with pkgs; [
@@ -14,7 +18,6 @@
 
     # X11 Desktop
     polybar
-    rofi
     dunst
     libnotify
     nitrogen
@@ -25,7 +28,7 @@
     pavucontrol
 
     # File Managers
-    gnome.nautilus
+    nautilus
     lf
     
     # File View
@@ -61,13 +64,17 @@
 
     # Utils
     gimp
-    gnome.gnome-disk-utility
+    gnome-disk-utility
+    gpaste
     gparted
     btop
     qbittorrent
     mission-center
     nvitop
     flameshot
+    localsend
+    xdg-user-dirs
+    nwg-look
 
     # Themes
     gruvbox-gtk-theme

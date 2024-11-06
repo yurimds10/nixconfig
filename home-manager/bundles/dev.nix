@@ -7,6 +7,9 @@
     vscode
     jetbrains.idea-community
 
+    # Containers
+    postman
+
     # JavaScript/TypeScript
     nodejs_22
     typescript
@@ -22,7 +25,7 @@
     llvm_18
     go
     python3
-    jdk22
+    openjdk
     rustc
   ];
 }
