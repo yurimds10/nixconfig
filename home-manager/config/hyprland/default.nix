@@ -1,5 +1,7 @@
 {
   pkgs,
+  config,
+  nix-colors,
   ...
 }: {
   imports = [ ./hyprpaper.nix ];
@@ -9,13 +11,12 @@
     package = pkgs.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
-    settings = {
+    settings = with config.colorScheme.palette; {
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "dunst"
         "nm-applet --indicator"
         "hyprpaper"
-        "ags -b"
+        "ags"
       ];
 
       # -----------------------------------------------------
@@ -54,8 +55,8 @@
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        "col.active_border" = "rgba(83a598ff)"; # Green
-        "col.inactive_border" = "rgba(ebdbb2ff)"; # White
+        "col.active_border" = "rgba(${base00}ff)";
+        "col.inactive_border" = "rgba(${base00}ff)";
 
         layout = "dwindle";
 
@@ -232,7 +233,7 @@
         "$mainMod      , bracketleft         , changegroupactive, b"
         "$mainMod      , bracketright        , changegroupactive, f"
         "$mainMod      , S                   , exec             , rofi -show drun"
-        "$mainMod      , O                   , exec             , wofi -show drun"
+        "$mainMod      , O                   , exec             , wofi --show drun"
         "$mainMod      , A                   , pin              , active"
         "$mainMod      , P                   , pseudo           ," # dwindle
         "$mainMod      , T                   , togglesplit      ," # dwindle
@@ -295,7 +296,10 @@
         "              , XF86AudioPrev       , exec           , playerctl previous"
         "              , XF86audiostop       , exec           , playerctl stop"
 
-        "              , print               , exec           , grim -g '$(slurp)' - | swappy -f -"
+        # Print Screen
+        ''              , print               , exec           , grim -g "$(slurp)"''
+        ''$mainMod      , print               , exec           , grim -g "$(slurp)" - | wl-copy''
+        ''$mainMod SHIFT, print               , exec           , grim -g "$(slurp)" - | swappy -f -''
       ];
 
       binde = [
@@ -357,6 +361,7 @@
     swappy
     wl-clipboard
     hyprpaper
+    hyprpanel
 
     networkmanagerapplet
 

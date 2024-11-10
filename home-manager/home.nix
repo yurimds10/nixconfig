@@ -2,13 +2,14 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   config,
+  inputs,
   pkgs,
   ...
 }: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModule
+    inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
     ./bundles/general.nix
@@ -16,6 +17,8 @@
     ./bundles/dev.nix
     ./bundles/gaming.nix
   ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
   nixpkgs = {
     # You can add overlays here

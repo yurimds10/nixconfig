@@ -15,7 +15,7 @@
 
       hst = {
         body = ''
-          history | uniq | ${pkgs.fzf}/bin/fzf
+          history | uniq | ${pkgs.fzf}/bin/fzf | ${pkgs.wl-clipboard}/bin/wl-copy -n
         '';
       };
     };

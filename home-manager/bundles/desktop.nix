@@ -6,9 +6,10 @@
     ../config/gtk/default.nix
     ../config/hyprland/default.nix
     ../config/ags/default.nix
-    ../config/i3/default.nix
     ../config/lf/default.nix
     ../config/kitty/default.nix
+    ../config/vesktop/default.nix
+    ../config/zathura/default.nix
   ];
 
   home.packages = with pkgs; [
@@ -16,13 +17,7 @@
     polkit
     polkit_gnome
 
-    # X11 Desktop
-    polybar
-    dunst
     libnotify
-    nitrogen
-    picom
-    lxappearance
 
     # Audio
     pavucontrol
@@ -68,13 +63,15 @@
     gpaste
     gparted
     btop
-    qbittorrent
+    transmission-gtk
     mission-center
     nvitop
     flameshot
     localsend
     xdg-user-dirs
+    xdg-utils
     nwg-look
+    nwg-dock-hyprland
 
     # Themes
     gruvbox-gtk-theme

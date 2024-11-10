@@ -16,9 +16,13 @@
     unzip
     zip
     
+    ffmpeg
+    ffmpegthumbnailer
     imagemagick
+    poppler
     killall
     fzf
+    jq
 
     # Rust Tools
     bat
@@ -41,7 +45,6 @@
     #git
     wget
     fastfetch
-    ffmpeg
     curl
     neovim
     tree-sitter

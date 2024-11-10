@@ -1,11 +1,12 @@
 { pkgs, ... }: {
 
+  imports = [ ../config/sddm/default.nix ];
+
   programs.lazygit.enable = true;
   programs.adb.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   programs.fish.enable = true;
-  services.displayManager.sddm.enable = true;
 
   # Brazil time zone.
   time.timeZone = "America/Sao_Paulo";

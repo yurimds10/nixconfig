@@ -2,11 +2,18 @@
   pkgs,
   ...
 }: {
-  services.hyprpaper.settings = {
-    splash = false;
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      splash = false;
 
-    preload = [ "/home/yurimds/Pictures/Wallpapers/Themes/Gruvbox/wall.png" ];
+      preload = [
+        "~/Pictures/Wallpapers/Themes/Gruvbox/2.png"
+      ];
 
-    wallpaper = [ "HDMI-A-1,/home/yurimds/Pictures/Wallpapers/Themes/Gruvbox/wall.png" ];
+      wallpaper = [
+        "HDMI-A-1,~/Pictures/Wallpapers/Themes/Gruvbox/2.png"
+      ];
+    };
   };
 }
