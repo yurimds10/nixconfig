@@ -3,6 +3,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ../config/nvchad/default.nix
+  ];
+
   home.packages = with pkgs; [
     vscode
     jetbrains.idea-community
@@ -12,7 +16,11 @@
 
     # JavaScript/TypeScript
     nodejs_22
+    bun
     typescript
+
+    # Scss
+    #dart-scss
 
     # C/C++
     libgcc

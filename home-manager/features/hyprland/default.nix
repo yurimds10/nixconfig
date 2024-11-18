@@ -17,6 +17,7 @@
         "nm-applet --indicator"
         "hyprpaper"
         "ags"
+	"nwg-dock-hyprland -x"
       ];
 
       # -----------------------------------------------------
@@ -93,7 +94,6 @@
       # -----------------------------------------------------
       # Layouts
       # -----------------------------------------------------
-
       dwindle = {
         pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # you probably want this
@@ -361,10 +361,7 @@
     swappy
     wl-clipboard
     hyprpaper
-    hyprpanel
-
     networkmanagerapplet
-
     rofi-wayland
     wofi
     wlogout

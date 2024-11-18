@@ -3,13 +3,13 @@
   ...
 }: {
   imports = [
-    ../config/gtk/default.nix
-    ../config/hyprland/default.nix
-    ../config/ags/default.nix
-    ../config/lf/default.nix
-    ../config/kitty/default.nix
-    ../config/vesktop/default.nix
-    ../config/zathura/default.nix
+    ../features/gtk/default.nix
+    ../features/hyprland/default.nix
+    ../features/ags/default.nix
+    ../features/lf/default.nix
+    ../features/kitty/default.nix
+    ../features/vesktop/default.nix
+    ../features/zathura/default.nix
   ];
 
   home.packages = with pkgs; [
@@ -63,7 +63,7 @@
     gpaste
     gparted
     btop
-    transmission-gtk
+    transmission_4-gtk
     mission-center
     nvitop
     flameshot

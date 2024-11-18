@@ -2,6 +2,7 @@
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
+  pkgs,
   lib,
   config,
   ...
@@ -40,6 +41,10 @@
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
+
+      (final: prev: {
+        nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+      })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -71,7 +76,7 @@
   boot.loader.grub = {
     enable = true;
     device = "/dev/sda";
-    useOSProber = true;
+    useOSProber = false;
   };
 
   services.xserver = {

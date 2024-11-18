@@ -4,6 +4,9 @@
     # wine-staging (version with experimental features)
     wineWowPackages.staging
 
+    # wine with wayland
+    wineWowPackages.waylandFull
+
     # winetricks (all versions)
     winetricks
 

@@ -25,6 +25,7 @@
 
       set -x EDITOR nvim
 
+      starship init fish
     '';
 
     shellAliases = {
