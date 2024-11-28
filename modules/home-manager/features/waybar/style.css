@@ -1,0 +1,160 @@
+@keyframes blink-warning {
+  70% {
+    color: #ebdbb2;
+  }
+
+  to {
+    color: #ebdbb2;
+    background-color: #fabd2f;
+  }
+}
+
+@keyframes blink-critical {
+  70% {
+    color: #ebdbb2;
+  }
+
+  to {
+    color: #ebdbb2;
+    background-color: #fb4934;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* The whole bar */
+#waybar {
+  background: #1d2021;
+  color: #ebdbb2;
+  font-family:
+    SF Pro Display,
+    JetBrainsMono Nerd Font,
+    sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 1rem;
+  border: 2px solid #ebdbb2;
+}
+
+/* Each module */
+#custom-keyboard-layout,
+#custom-launcher,
+#custom-power,
+#disk,
+#battery,
+#clock,
+#cpu,
+#memory,
+#mode,
+#network,
+#wireplumber,
+#temperature,
+#tray {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+#custom-launcher,
+#custom-power {
+  font-size: 18px;
+  transition: .3s;
+}
+
+#custom-launcher {
+  color: #689d6a;
+}
+
+#custom-launcher:hover {
+  color: #83a598;
+}
+
+#custom-power {
+  font-weight: 900;
+  color: #fb4934;
+}
+
+#custom-power:hover {
+  color: #83a598;
+}
+
+#cpu.warning {
+  color: #fabd2f;
+}
+
+#cpu.critical {
+  color: #fb4934;
+}
+
+#memory {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#memory.warning {
+  color: #fabd2f;
+}
+
+#memory.critical {
+  color: #fb4934;
+}
+
+#network.disconnected {
+  color: #fabd2f;
+}
+
+#pulseaudio.muted {
+  color: #fb4934;
+}
+
+#custom-spotify {
+  color: rgb(102, 220, 105);
+}
+
+#temperature.critical {
+  color: #fb4934;
+}
+
+#tray {
+  /* No styles */
+  color: #ebdbb2;
+}
+
+#workspaces {
+  background: @background;
+  border-radius: 8px;
+  padding: 0px 5px;
+  margin: 4px 10px;
+}
+
+#workspaces button {
+  padding: 0px 0px;
+  margin: 6px 5px;
+  border-radius: 10px;
+  background: #ebdbb2;
+  transition: all 0.5s cubic-bezier(0.11, 1.09, 0.6, 0.96);
+}
+
+#workspaces button.active {
+  margin: 6px 5px;
+  padding: 0px 16px;
+  background-color: #83a598;
+}
+
+#workspaces button:hover {
+  background-color: #83a598;
+}
