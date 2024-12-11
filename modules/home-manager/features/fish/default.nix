@@ -1,8 +1,8 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{ pkgs, ... }: {
+  home.packages = with pkgs; [
+    grc
+  ];
+
   programs.fish = {
     enable = true;
 
@@ -44,9 +44,10 @@
       grep = "grep --color=always";
 
       vim = "nvim";
-      dotfiles = "nvim $HOME/dotfiles/";
-      nixconfig = "nvim $HOME/nixconfig/";
-      neovim = "nvim $HOME/Dev/neovim";
+      vi = "nvim";
+
+      nixconfig = "nvim $HOME/.config/Nix/nixconfig/";
+      neovim = "nvim $HOME/.config/Nix/nixconfig/";
 
       gcl = "git clone";
       gs = "git status";
@@ -61,5 +62,11 @@
     interactiveShellInit = ''
       fish_vi_key_bindings
     '';
+
+    plugins = [
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      { name = "gruvbox"; src = pkgs.fishPlugins.gruvbox.src; }
+    ];
   };
 }

@@ -3,9 +3,9 @@
   imports = [
     inputs.nix-colors.homeManagerModules.default
 
+    ../../modules/home-manager/bundles/dev.nix
     ../../modules/home-manager/bundles/general.nix
     ../../modules/home-manager/bundles/desktop.nix
-    ../../modules/home-manager/bundles/dev.nix
     ../../modules/home-manager/bundles/gaming.nix
   ];
 

@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  nix-colors,
   ...
 }: {
   home.packages = with pkgs; [

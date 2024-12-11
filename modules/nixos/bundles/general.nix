@@ -7,9 +7,9 @@
     ../features/localization/default.nix
     ../features/nix/default.nix
     ../features/network/default.nix
-    #../features/nur.nix
     ../features/sddm/default.nix
     ../features/security/default.nix
+    ../features/services/xserver.nix
     ../features/time/default.nix
     ../features/polkit.nix
     ../features/otimization.nix

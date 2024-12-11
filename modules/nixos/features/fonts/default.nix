@@ -9,7 +9,9 @@
       noto-fonts-emoji
 
       # Nerd Fonts
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
+      nerd-fonts.iosevka-term
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
     ];
 
     fontconfig = {

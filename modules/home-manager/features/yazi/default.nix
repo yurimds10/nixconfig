@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{ pkgs, config, ... }: {
   programs.yazi = {
     enable = true;
     package = pkgs.yazi.override {
@@ -9,7 +6,7 @@
     };
     enableFishIntegration = true;
     enableNushellIntegration = true;
-    settings = {
+    settings =  {
       log = {
         enabled = false;
       };
@@ -25,7 +22,7 @@
           "click"
           "scroll"
         ];
-        ratio = [1 5 2];
+        ratio = [2 3 5];
       };
 
       tasks = {
@@ -184,43 +181,59 @@
       ];
     };
 
-    theme = {
+    theme = with config.colorScheme.palette; {
+
+      #base00: "#282828" # ----
+      #base01: "#3c3836" # ---
+      #base02: "#504945" # --
+      #base03: "#665c54" # -
+      #base04: "#bdae93" # +
+      #base05: "#d5c4a1" # ++
+      #base06: "#ebdbb2" # +++
+      #base07: "#fbf1c7" # ++++
+      #base08: "#fb4934" # red
+      #base09: "#fe8019" # orange
+      #base0A: "#fabd2f" # yellow
+      #base0B: "#b8bb26" # green
+      #base0C: "#8ec07c" # aqua/cyan
+      #base0D: "#83a598" # blue
+      #base0E: "#d3869b" # purple
+      #base0F: "#d65d0e" # brown
+
       manager = {
-        cwd = { fg = "#94e2d5"; };
+        cwd = { fg = "#${base0A}"; };
 
         # Hovered
-        hovered = { fg = "#1e1e2e"; bg = "#89b4fa"; };
+        hovered = { reversed = true; bold = true; };
         preview_hovered = { underline = true; };
+        
         # Find
-        find_keyword  = { fg = "#f9e2af"; italic = true; };
-        find_position = { fg = "#f5c2e7"; bg = "reset"; italic = true; };
+        find_keyword  = { fg = "#${base0B}"; italic = true; };
+        find_position = { fg = "#${base09}"; bg = "reset"; italic = true; };
 
         # Marker
-        marker_copied   = { fg = "#a6e3a1"; bg = "#a6e3a1"; };
+        marker_copied   = { fg = "#${base0C}"; bg = "#${base0C}"; };
         marker_cut      = { fg = "#f38ba8"; bg = "#f38ba8"; };
         marker_selected = { fg = "#89b4fa"; bg = "#89b4fa"; };
 
         # Tab
-        tab_active   = { fg = "#1e1e2e"; bg = "#cdd6f4"; };
+        tab_active   = { fg = "#${base00}"; bg = "#cdd6f4"; };
         tab_inactive = { fg = "#cdd6f4"; bg = "#45475a"; };
         tab_width    = 1;
 
         # Count
-        count_copied   = { fg = "#1e1e2e"; bg = "#a6e3a1"; };
+        count_copied   = { fg = "#1e1e2e"; bg = "#${base0C}"; };
         count_cut      = { fg = "#1e1e2e"; bg = "#f38ba8"; };
         count_selected = { fg = "#1e1e2e"; bg = "#89b4fa"; };
 
         # Border
         border_symbol = "│";
-        border_style  = { fg = "#7f849c"; };
-
-        # Highlighting
-        syntect_theme = "~/.config/yazi/Catppuccin-mocha.tmTheme";
+        border_style  = { fg = "#665c54"; };
       };
 
       status = {
-        separator_open  = "";
-        separator_close = "";
+        separator_open  = "│";
+        separator_close = "│";
         separator_style = { fg = "#45475a"; bg = "#45475a"; };
 
         # Mode
@@ -294,7 +307,7 @@
 
       icon = {
         files = [
-          { name = "gulpfile.js"; text = ""; fg_dark = "#f38ba8"; fg_light = "#f38ba8"; }
+          { name = "gulpfile.js"; text = ""; fg_dark = "#${base0D}"; fg_light = "#f38ba8"; }
           { name = ".babelrc"; text = ""; fg_dark = "#f9e2af"; fg_light = "#f9e2af"; }
           { name = "copying.lesser"; text = ""; fg_dark = "#f9e2af"; fg_light = "#f9e2af"; }
           { name = ".npmrc"; text = ""; fg_dark = "#f38ba8"; fg_light = "#f38ba8"; }

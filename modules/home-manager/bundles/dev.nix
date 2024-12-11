@@ -1,14 +1,12 @@
 { pkgs, inputs, ...}:
 {
   imports = [
-    ../features/nixvim/default.nix
     ../features/vscodium/default.nix
   ];
 
   home.packages = with pkgs; [
-    #inputs.nixvim.packages.x86_64-linux.default
+    inputs.nixvim.packages.x86_64-linux.default
 
-    #vscode
     jetbrains.idea-community
 
     # Containers
@@ -16,11 +14,12 @@
 
     # JavaScript/TypeScript
     nodejs_22
-    bun
     typescript
+    deno
 
-    # Scss
+    # CSS
     sassc
+    lessc
 
     # C/C++
     libgcc
@@ -34,7 +33,7 @@
     llvm_18
     go
     python3
-    openjdk
+    jdk23
     rustc
   ];
 }

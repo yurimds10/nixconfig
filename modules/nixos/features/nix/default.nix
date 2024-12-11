@@ -1,13 +1,5 @@
-{ config, pkgs, inputs, lib, ... }:
+{ config, inputs, lib, ... }:
 {
-  nixpkgs = {
-    overlays = [];
-
-    config = {
-      allowUnfree = true;
-    };
-  };
-
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
@@ -18,6 +10,8 @@
 
       extra-substituters = [ "https://yazi.cachix.org" ];
       extra-trusted-public-keys = [ "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k=" ];
+
+      #system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" "gccarch-kentsfield" ];
     };
 
     channel.enable = false;
@@ -26,7 +20,25 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  services.xserver.enable = true;
-  
+  nixpkgs = {
+    overlays = [];
+
+    config = {
+      allowUnfree = true;
+    };
+
+    #hostPlatform = {
+    # gcc.arch = "kentsfield";
+    # gcc.tune = "kentsfield";
+    # system = "x86_64-linux";
+    #};
+
+    #buildPlatform = {
+    #  gcc.arch = "kentsfield";
+    #  gcc.tune = "kentsfield";
+    #  system = "x86_64-linux";
+    #};
+  };
+
   system.stateVersion = "24.05";
 }

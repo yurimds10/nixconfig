@@ -2,13 +2,20 @@
 {
   programs.kitty = {
     enable = true;
-    settings = with config.colorScheme.palette; {
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 10.5;
+    };
+    settings = with config.colorScheme.palette; {  
       enable_audio_bell = "no";
       allow_remote_control = "yes";
       listen_on = "unix:/tmp/kitty";
       shell_integration = "true";
       disable_ligatures = "never";
       editor = "nvim";
+
+      font_family = "JetBrainsMonoNF-Bold";
+      adjust_line_height = 3;
 
       cursor = "#${base06}";
       cursor_text_color = "background";

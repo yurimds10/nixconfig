@@ -4,7 +4,6 @@
 }: {
   imports = [
     ../features/alacritty/default.nix
-    ../features/dunst/default.nix
     ../features/cava/default.nix
     ../features/firefox/default.nix
     ../features/gtk/default.nix
@@ -12,6 +11,7 @@
     ../features/kitty/default.nix
     ../features/lf/default.nix
     ../features/spicetify/default.nix
+    ../features/swaync/default.nix
     ../features/vesktop/default.nix
     ../features/waybar/default.nix
     ../features/wlogout/default.nix
@@ -70,9 +70,7 @@
     mission-center
     nvitop
     localsend
-    xdg-user-dirs
     nwg-look
-    nwg-dock-hyprland
     gowall
 
     # Themes
