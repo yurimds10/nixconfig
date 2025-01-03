@@ -5,10 +5,10 @@
 }: let
   sddmTheme = import ./sddm-theme.nix {inherit pkgs;};
 in {
-  services.displayManager = {
-    sddm.enable = lib.mkDefault true;
-    #sddm.wayland.enable = true;
-    sddm.theme = "${sddmTheme}";
+  services.displayManager.sddm = {
+    enable = lib.mkDefault true;
+    wayland.enable = false;
+    theme = "${sddmTheme}";
   };
 
   environment.systemPackages = with pkgs; [

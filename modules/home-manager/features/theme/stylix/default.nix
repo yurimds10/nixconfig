@@ -1,13 +1,10 @@
-{ inputs, pkgs, ...}:
+{ pkgs, inputs, ... }:
 {
   imports = [
-    inputs.stylix.nixosModules.stylix
+    inputs.stylix.homeManagerModules.stylix
   ];
+
   stylix = {
-    enable = true;
-
-    #base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-
     base16Scheme = {
       base00 = "282828"; # ----
       base01 = "3c3836"; # ---
@@ -29,7 +26,7 @@
 
     polarity = "dark";
 
-    image = ./wallpaper.png;
+    image = ../../../../nixos/features/stylix/wallpaper.png;
 
     fonts = {
       monospace = {
@@ -47,22 +44,18 @@
 
       sizes = {
         applications = 10;
-        terminal = 10.5;
+        terminal = 11;
         desktop = 10;
         popups = 10;
       };
     };
 
-    cursor.name = "Capitaine Cursors (Gruvbox) - White";
-    cursor.package = pkgs.capitaine-cursors-themed;
-    targets.chromium.enable = true;
-    targets.grub.enable = true;
-    targets.grub.useImage = true;
-    targets.plymouth.enable = true;
 
-    # opacity.terminal = 1;
-    # stylix.targets.nixos-icons.enable = true;
+    targets.waybar.enable = false;
+    targets.rofi.enable = false;
+    targets.kde.enable = false;
 
-    autoEnable = false;
+    autoEnable = true;
+    enable = true;
   };
 }

@@ -1,9 +1,9 @@
-{ ... }:
+{ lib, ... }:
 {
   services.xserver = {
     enable = true;
     desktopManager = {
-      xterm.enable = false;
+      xterm.enable = lib.mkDefault false;
     };
   };
 }

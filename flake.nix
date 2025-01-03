@@ -4,49 +4,45 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     # Home manager
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager-unstable.url = "github:nix-community/home-manager/master";
+    home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
 
-    # grub2 theme
-    grub2-themes.url = "github:vinceliuice/grub2-themes";
-    grub2-themes.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager-stable.url = "github:nix-community/home-manager/release-24.11";
+    home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
 
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-on-droid
+    #nix-on-droid.url = "github:nix-community/nix-on-droid/master";
+    #nix-on-droid.inputs.nixpkgs.follows = "nixpkgs";
+    #nix-on-droid.home-manager.follows = "home-manager-stable";
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    nix-colors.url = "github:misterio77/nix-colors";
-
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixvim.url = "github:yurimds10/nixvim";
-
+    # ColorSchemes
     stylix.url = "github:danth/stylix/ed91a20c84a80a525780dcb5ea3387dddf6cd2de";
+
+    # Firefox Addons
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Minecraft
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+
+    # Configs
+    nixvim.url = "github:yurimds10/nixvim";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-on-droid, ... } @ inputs:
-  let
-    inherit (self) outputs;
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager-unstable,
+    nix-on-droid,
+    hyprland,
+    nix-colors,
+    ...
+  } @ inputs:
+    let
+      inherit (self) outputs;
   in {
     nixosConfigurations = {
       "desktop" = nixpkgs.lib.nixosSystem {
@@ -64,7 +60,7 @@
     };
 
     homeConfigurations = {
-      "yurimds@desktop" = home-manager.lib.homeManagerConfiguration {
+      "yurimds@desktop" = home-manager-unstable.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs;

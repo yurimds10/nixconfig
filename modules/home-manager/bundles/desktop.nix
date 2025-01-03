@@ -1,23 +1,40 @@
+{ pkgs, ... }:
 {
-  pkgs,
-  ...
-}: {
   imports = [
-    ../features/alacritty/default.nix
-    ../features/cava/default.nix
-    ../features/firefox/default.nix
-    ../features/gtk/default.nix
-    ../features/hyprland/default.nix
-    ../features/kitty/default.nix
-    ../features/lf/default.nix
-    ../features/spicetify/default.nix
-    ../features/swaync/default.nix
-    ../features/vesktop/default.nix
-    ../features/waybar/default.nix
-    ../features/wlogout/default.nix
-    ../features/yazi/default.nix
-    ../features/zathura/default.nix
+    # Desktop
+    #../features/desktop/hyprland/default.nix
+    ../features/desktop/i3/default.nix
+    ../features/desktop/sway/default.nix
+    ../features/desktop/swaync/default.nix
+    #../features/desktop/waybar/default.nix
+    #../features/desktop/wlogout/default.nix
+
+    # Applications
+    ../features/applications/cava/default.nix
+    ../features/applications/vesktop/default.nix
+    ../features/applications/yazi/default.nix
+    ../features/applications/zathura/default.nix
+
+    # Browsers
+    ../features/browser/firefox/default.nix
+    ../features/browser/chromium/default.nix
+
+    # Theme
+    ../features/theme/gtk/default.nix
+    ../features/theme/stylix/default.nix
+
+    # Terminals
+    ../features/terminal/kitty/default.nix
   ];
+
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = ["neovide.desktop"];
+    "application/pdf" = ["zathura.desktop"];
+    "image/*" = ["imv.desktop"];
+    "video/png" = ["mpv.desktop"];
+    "video/jpg" = ["mpv.desktop"];
+    "video/*" = ["mpv.desktop"];
+  };
 
   home.packages = with pkgs; [
     # Polkit
@@ -36,25 +53,17 @@
     zathura
 
     # Browsers
-    google-chrome
-    microsoft-edge
     tor-browser
 
     # Media
     obs-studio
     mpv
     imv
-    spicetify-cli
-    stremio
 
     # terminals
     kitty
-    alacritty
-    wezterm
 
     # Social Media
-    whatsapp-for-linux
-    telegram-desktop
     vesktop
 
     # Study
@@ -64,7 +73,6 @@
     # Utils
     gimp
     gnome-disk-utility
-    gparted
     btop
     transmission_4-gtk
     mission-center
@@ -72,10 +80,5 @@
     localsend
     nwg-look
     gowall
-
-    # Themes
-    gruvbox-gtk-theme
-    gruvbox-plus-icons
-    capitaine-cursors-themed
   ];
 }

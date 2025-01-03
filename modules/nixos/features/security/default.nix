@@ -50,13 +50,17 @@
     rtkit.enable = true;
   };
 
-  #security.doas.enable = true;
-  security.sudo.enable = true;
-  #security.doas.extraRules = [{
-  #  users = ["yurimds"];
-  #  # Optional, retains environment variables while running commands 
-  #  # e.g. retains your NIX_PATH when applying your config
-  #  keepEnv = true; 
-  #  persist = true;  # Optional, only require password verification a single time
-  #}];
+  security.sudo.enable = false;
+  security.doas.enable = true;
+  security.doas.extraRules = [{
+    users = ["yurimds"];
+    # Optional, retains environment variables while running commands 
+    # e.g. retains your NIX_PATH when applying your config
+    keepEnv = true; 
+    persist = true;  # Optional, only require password verification a single time
+  }];
+
+  # Enable the gnome-keyring secrets vault. 
+  # Will be exposed through DBus to programs willing to store secrets.
+  services.gnome.gnome-keyring.enable = true;
 }

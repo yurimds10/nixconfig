@@ -1,12 +1,10 @@
 { pkgs, ... }: {
 
   imports = [
-    ../features/bat/default.nix
-    ../features/git/default.nix
-    ../features/direnv/default.nix
-    ../features/fish/default.nix
-    ../features/nushell/default.nix
-    ../features/starship/default.nix
+    ../features/general/bat/default.nix
+    ../features/general/direnv/default.nix
+    ../features/shell/fish/default.nix
+    ../features/shell/starship/default.nix
   ];
 
   xdg.userDirs.enable = true;

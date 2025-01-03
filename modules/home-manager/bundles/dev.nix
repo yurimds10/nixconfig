@@ -1,13 +1,14 @@
 { pkgs, inputs, ...}:
 {
   imports = [
-    ../features/vscodium/default.nix
+    ../features/dev/git/default.nix
+    ../features/dev/vscodium/default.nix
   ];
 
   home.packages = with pkgs; [
     inputs.nixvim.packages.x86_64-linux.default
 
-    jetbrains.idea-community
+    #jetbrains.idea-community
 
     # Containers
     postman
@@ -19,7 +20,6 @@
 
     # CSS
     sassc
-    lessc
 
     # C/C++
     libgcc

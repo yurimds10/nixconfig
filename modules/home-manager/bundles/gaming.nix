@@ -9,7 +9,6 @@
   home.packages = with pkgs; [
     # Launchers
     lutris
-    heroic
     steam
     steam-run
 
@@ -21,8 +20,6 @@
 
     # Emulators
     duckstation
-    ppsspp
-    snes9x
 
     # Tools
     protonup
@@ -39,6 +36,6 @@
     vulkan-utility-libraries
 
     # Games
-    clonehero
+    yarg
   ];
 }
