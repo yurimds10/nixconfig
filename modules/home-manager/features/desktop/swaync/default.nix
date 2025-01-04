@@ -123,7 +123,7 @@
         };
 
         ## https://github.com/catppuccin/swaync
-        style = with config.colorScheme.palette; ''
+        style = with config.lib.stylix.colors; ''
           * {
             all: unset;
             font-size: 10px;

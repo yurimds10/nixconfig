@@ -1,9 +1,9 @@
-{ ... }:
+{ lib, ... }:
 {
   boot.loader = {
     # Bootloader.
     grub = {
-      enable = true;
+      enable = lib.mkDefault true;
       device = "/dev/sda";
       useOSProber = false;
     };

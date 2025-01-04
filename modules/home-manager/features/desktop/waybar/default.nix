@@ -7,7 +7,7 @@
       mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     });
 
-    settings = with config.colorScheme.palette; {
+    settings = with config.lib.stylix.colors; {
       mainBar = {
         layer = "top";
         position = "bottom";
@@ -114,7 +114,7 @@
         };
       };
 
-      style = with config.colorScheme.palette; ''
+      style = with config.lib.stylix.colors; ''
         * {
           /* `otf-font-awesome` is required to be installed for icons */
           padding: 0;

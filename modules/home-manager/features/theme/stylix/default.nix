@@ -28,6 +28,9 @@
 
     image = ../../../../nixos/features/stylix/wallpaper.png;
 
+    #cursor.package = pkgs.capitaine-cursors-themed;
+    #cursor.name = "Capitaine Cursors (Gruvbox) - White";
+
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
@@ -44,12 +47,11 @@
 
       sizes = {
         applications = 10;
-        terminal = 11;
+        terminal = 10;
         desktop = 10;
         popups = 10;
       };
     };
-
 
     targets.waybar.enable = false;
     targets.rofi.enable = false;

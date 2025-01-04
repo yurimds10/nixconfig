@@ -35,7 +35,7 @@
       }
     ];
 
-    style = with config.colorScheme.palette; ''
+    style = with config.lib.stylix.colors; ''
       window {
           font-family: monospace;
           font-size: 14pt;

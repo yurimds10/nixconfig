@@ -53,8 +53,9 @@
       };
     };
 
-    cursor.name = "Capitaine Cursors (Gruvbox) - White";
-    cursor.package = pkgs.capitaine-cursors-themed;
+    #cursor.package = pkgs.capitaine-cursors-themed;
+    #cursor.name = "Capitaine Cursors (Gruvbox) - White";
+    
     targets.chromium.enable = true;
     targets.grub.enable = true;
     targets.grub.useImage = true;

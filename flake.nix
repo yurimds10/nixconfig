@@ -52,6 +52,14 @@
           ./hosts/desktop/configuration.nix
         ];
       };
+
+      "liveiso" = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs outputs; };
+        
+        modules = [
+          ./hosts/liveiso/configuration.nix
+        ];
+      };
     };
 
     nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
@@ -69,6 +77,18 @@
         
         modules = [
           ./hosts/desktop/home.nix
+        ];
+      };
+
+      "yurimds@liveiso" = home-manager-unstable.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit outputs;
+        };
+
+        modules = [
+          ./hosts/liveiso/home.nix
         ];
       };
     };

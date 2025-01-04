@@ -6,8 +6,8 @@
     ../features/desktop/i3/default.nix
     ../features/desktop/sway/default.nix
     ../features/desktop/swaync/default.nix
-    #../features/desktop/waybar/default.nix
-    #../features/desktop/wlogout/default.nix
+    ../features/desktop/waybar/default.nix
+    ../features/desktop/wlogout/default.nix
 
     # Applications
     ../features/applications/cava/default.nix

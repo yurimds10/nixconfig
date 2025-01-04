@@ -26,7 +26,7 @@
       ];
 
       palette = "gruvbox_dark";
-      palettes.gruvbox_dark = with config.colorScheme.palette; {
+      palettes.gruvbox_dark = with config.lib.stylix.colors; {
         color_fg0 = "#${base06}";
         color_fg1 = "#${base04}";
         color_bg1 = "#${base03}";

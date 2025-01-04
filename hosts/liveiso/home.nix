@@ -1,10 +1,9 @@
-{ inputs, ... }:
+{ ... }:
 {
   imports = [
     ../../modules/home-manager/bundles/dev.nix
     ../../modules/home-manager/bundles/general.nix
     ../../modules/home-manager/bundles/desktop.nix
-    ../../modules/home-manager/bundles/gaming.nix
   ];
 
   nixpkgs = {
@@ -24,6 +23,4 @@
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-
-  home.stateVersion = "24.11";
 }

@@ -1,12 +1,12 @@
-{ config, ... }:
+{ lib, ... }:
 {
   programs.kitty = {
     enable = true;
-    # font = {
-    #   name = "JetBrainsMono Nerd Font";
-    #   size = 10.5;
-    # };
-    settings = with config.colorScheme.palette; {  
+    font = lib.mkDefault {
+      name = "JetBrainsMono Nerd Font";
+      size = 10.5;
+    };
+    settings = {  
       enable_audio_bell = "no";
       allow_remote_control = "yes";
       listen_on = "unix:/tmp/kitty";
@@ -14,7 +14,7 @@
       disable_ligatures = "never";
       editor = "nvim";
 
-      #font_family = "JetBrainsMonoNF-Bold";
+      font_family = lib.mkDefault "JetBrainsMonoNF-Bold";
       adjust_line_height = 3;
     };
 

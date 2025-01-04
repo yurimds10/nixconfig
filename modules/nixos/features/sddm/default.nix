@@ -7,7 +7,7 @@
 in {
   services.displayManager.sddm = {
     enable = lib.mkDefault true;
-    wayland.enable = false;
+    wayland.enable = true;
     theme = "${sddmTheme}";
   };
 
