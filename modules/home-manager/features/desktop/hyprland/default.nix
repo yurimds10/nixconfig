@@ -2,17 +2,15 @@
 {
   imports = [ ./hyprpaper.nix ];
 
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = with config.lib.stylix.colors; {
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
     systemd.enable = true;
-    settings = with config.colorScheme.palette; {
+    settings = {
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "nm-applet --indicator"
         "hyprpaper"
-	      "nwg-dock-hyprland -x -mb 5"
         "waybar"
       ];
 
@@ -62,19 +60,19 @@
 
       #Could help when scaling and not pixelating
       xwayland = {
-          force_zero_scaling = true;
+        force_zero_scaling = true;
       };
 
       # -----------------------------------------------------
       # General window decoration
       # -----------------------------------------------------
-      decoration = {
-        rounding = 10;
+      decoration = lib.mkDefault {
+        rounding = 8;
 
         shadow.enabled = false;
 
         active_opacity = 1.0;
-        inactive_opacity = 1.0;
+        inactive_opacity = 0.99;
 
         blur = {
           enabled = false;

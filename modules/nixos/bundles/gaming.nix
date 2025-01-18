@@ -15,6 +15,10 @@
     vulkan-loader
     vulkan-headers
     vulkan-utility-libraries
+
+    # Controllers
+    python313Packages.ds4drv
+    steamcontroller
   ];
 }
 

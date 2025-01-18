@@ -3,18 +3,18 @@
   programs.waybar = {
     enable = true;
 
-    package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    });
+    
+    #package = pkgs.waybar.overrideAttrs (oldAttrs: {
+    #  mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+    #});
 
     settings = with config.lib.stylix.colors; {
       mainBar = {
         layer = "top";
-        position = "bottom";
         gtk-layer-shell = true;
         height = 20;
         spacing = 5;
-        margin-bottom = 5;
+        margin-top = 10;
         margin-right = 8;
         margin-left = 8;
       

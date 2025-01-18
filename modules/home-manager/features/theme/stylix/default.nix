@@ -26,7 +26,7 @@
 
     polarity = "dark";
 
-    image = ../../../../nixos/features/stylix/wallpaper.png;
+    image = ../../../../nixos/features/stylix/sakura.png;
 
     #cursor.package = pkgs.capitaine-cursors-themed;
     #cursor.name = "Capitaine Cursors (Gruvbox) - White";
@@ -55,7 +55,9 @@
 
     targets.waybar.enable = false;
     targets.rofi.enable = false;
+    targets.hyprland.enable = false;
     targets.kde.enable = false;
+    targets.firefox.enable = false;
 
     autoEnable = true;
     enable = true;

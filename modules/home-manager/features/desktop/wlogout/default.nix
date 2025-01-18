@@ -40,7 +40,7 @@
           font-family: monospace;
           font-size: 14pt;
           color: #${base06}; /* text */
-          background-color: rgba(30, 30, 46, 0.5);
+          background-color: #28282865;
       }
 
       button {
@@ -48,7 +48,7 @@
           background-position: center;
           background-size: 25%;
           border: none;
-          background-color: rgba(30, 30, 46, 0);
+          background-color: #${base03};
           margin: 5px;
           transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
       }
@@ -58,7 +58,7 @@
       }
 
       button:focus {
-          background-color: #${base0A};
+          background-color: #${base0D};
           color: #${base00};
         }
 

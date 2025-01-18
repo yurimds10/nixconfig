@@ -5,11 +5,11 @@
       splash = false;
 
       preload = [
-        "~/Pictures/Wallpapers/Themes/Gruvbox/4.png"
+        "~/Pictures/Wallpapers/sakura.png"
       ];
 
       wallpaper = [
-        "HDMI-A-1,~/Pictures/Wallpapers/Themes/Gruvbox/4.png"
+        "HDMI-A-1,~/Pictures/Wallpapers/sakura.png"
       ];
     };
   };

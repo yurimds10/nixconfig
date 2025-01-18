@@ -46,8 +46,8 @@
       vim = "nvim";
       vi = "nvim";
 
-      nixconfig = "nvim $HOME/.config/Nix/nixconfig/";
-      neovim = "nvim $HOME/.config/Nix/nixconfig/";
+      nixconfig = "nvim $HOME/.config/xix/nixconfig/";
+      neovim = "nvim $HOME/.config/xix/nixconfig/";
 
       gcl = "git clone";
       gs = "git status";

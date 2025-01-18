@@ -14,7 +14,7 @@
       disable_ligatures = "never";
       editor = "nvim";
 
-      font_family = lib.mkDefault "JetBrainsMonoNF-Bold";
+      font_family = lib.mkDefault "JetBrainsMonoNF-Medium";
       adjust_line_height = 3;
     };
 

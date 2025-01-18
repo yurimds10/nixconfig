@@ -36,9 +36,6 @@
     self,
     nixpkgs,
     home-manager-unstable,
-    nix-on-droid,
-    hyprland,
-    nix-colors,
     ...
   } @ inputs:
     let
@@ -62,10 +59,10 @@
       };
     };
 
-    nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
-      pkgs = import nixpkgs { system = "aarch64-linux"; };
-      modules = [ ./hosts/android/configuration.nix ];
-    };
+    # nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
+    #   pkgs = import nixpkgs { system = "aarch64-linux"; };
+    #   modules = [ ./hosts/android/configuration.nix ];
+    # };
 
     homeConfigurations = {
       "yurimds@desktop" = home-manager-unstable.lib.homeManagerConfiguration {

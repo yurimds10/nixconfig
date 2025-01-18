@@ -8,7 +8,7 @@
   home.packages = with pkgs; [
     inputs.nixvim.packages.x86_64-linux.default
 
-    #jetbrains.idea-community
+    jetbrains.idea-community
 
     # Containers
     postman

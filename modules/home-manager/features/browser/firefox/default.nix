@@ -20,7 +20,7 @@ in {
         (builtins.readFile "${betterfox}/Peskyfox.js")
       ];
 
-      #userChrome = builtins.readFile "${theme}/chrome/userChrome.css";
+      #userChrome = builtins.readFile "~/.mozilla/firefox/default/chrome/userChrome.css";
 
       settings = {
         # General
@@ -46,6 +46,13 @@ in {
         "accessibility.typeaheadfind.enablesound" = false;
         # Why the fuck can my search window make bell sounds
         "general.autoScroll" = true;
+
+        # Config for Firefox Theme
+        "browser.tabs.drawInTitlebar" = true;
+        "browser.uidensity" = 0;
+        "layers.acceleration.force-enabled" = true;
+        "mozilla.widget.use-argb-visuals" = true;
+        "widget.gtk.rounded-bottom-corners.enabled" = true;
 
         "identity.fxaccounts.enabled" = false; # disable firefox login
         "identity.fxaccounts.toolbar.enabled" = false;
@@ -127,19 +134,15 @@ in {
 
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
         ublock-origin
-      
+
         sponsorblock
         return-youtube-dislikes
+        youtube-shorts-block
 
         enhanced-github
         refined-github
         github-file-icons
-        reddit-enhancement-suite
 
-        youtube-shorts-block
-        sidebery
-
-        sidebery
         stylus
       ];
 

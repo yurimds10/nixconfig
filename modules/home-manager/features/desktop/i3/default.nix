@@ -10,7 +10,7 @@ in {
     polybar
   ];
   xsession.windowManager.i3 = {
-    enable = true;
+    enable = false;
     config = {
       modifier = mod;
 

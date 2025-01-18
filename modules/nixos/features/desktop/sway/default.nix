@@ -8,7 +8,7 @@
 
   # enable sway window manager
   programs.sway = {
-    enable = true;
+    enable = false;
     wrapperFeatures.gtk = true;
   }; 
 }

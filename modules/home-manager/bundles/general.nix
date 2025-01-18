@@ -1,9 +1,11 @@
 { pkgs, ... }: {
 
   imports = [
+    ../features/applications/fastfetch/default.nix
     ../features/general/bat/default.nix
     ../features/general/direnv/default.nix
     ../features/shell/fish/default.nix
+    ../features/shell/nushell/default.nix
     ../features/shell/starship/default.nix
   ];
 

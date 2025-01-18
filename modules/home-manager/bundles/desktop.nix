@@ -2,8 +2,8 @@
 {
   imports = [
     # Desktop
-    #../features/desktop/hyprland/default.nix
-    ../features/desktop/i3/default.nix
+    ../features/desktop/hyprland/default.nix
+    ../features/desktop/rofi/default.nix
     ../features/desktop/sway/default.nix
     ../features/desktop/swaync/default.nix
     ../features/desktop/waybar/default.nix
@@ -25,6 +25,7 @@
 
     # Terminals
     ../features/terminal/kitty/default.nix
+    ../features/terminal/alacritty
   ];
 
   xdg.mimeApps.defaultApplications = {
@@ -59,6 +60,7 @@
     obs-studio
     mpv
     imv
+    musikcube
 
     # terminals
     kitty

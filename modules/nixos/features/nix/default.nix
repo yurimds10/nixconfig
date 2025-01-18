@@ -1,23 +1,21 @@
 { config, inputs, lib, ... }:
 {
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
+  nix = {
     settings = {
       experimental-features = "nix-command flakes";
       flake-registry = "";
       nix-path = config.nix.nixPath;
 
-      extra-substituters = [ "https://yazi.cachix.org" ];
-      extra-trusted-public-keys = [ "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k=" ];
+      #extra-substituters = [ "https://yazi.cachix.org" ];
+      #extra-trusted-public-keys = [ "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k=" ];
 
       #system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" "gccarch-kentsfield" ];
     };
 
     channel.enable = false;
 
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    #registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    #nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
   nixpkgs = {
@@ -40,5 +38,5 @@
     #};
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
