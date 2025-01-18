@@ -29,7 +29,7 @@
 
     polarity = "dark";
 
-    image = ./wallpaper.png;
+    image = ./sakura.png;
 
     fonts = {
       monospace = {
