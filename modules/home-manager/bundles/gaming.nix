@@ -20,6 +20,7 @@
 
     # Emulators
     duckstation
+    snes9x
 
     # Tools
     protonup
@@ -36,6 +37,6 @@
     vulkan-utility-libraries
 
     # Games
-    yarg
+    clonehero
   ];
 }

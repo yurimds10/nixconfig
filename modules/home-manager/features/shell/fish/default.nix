@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     grc
   ];
@@ -46,8 +47,11 @@
       vim = "nvim";
       vi = "nvim";
 
-      nixconfig = "nvim $HOME/.config/xix/nixconfig/";
-      neovim = "nvim $HOME/.config/xix/nixconfig/";
+      nixconfig = "nvim $HOME/.config/nix/nixconfig/";
+      neovim = "nvim $HOME/.config/nix/nixvim/";
+
+      projects = "cd ~/Documents/Projects/Repositories/";
+      studies = "cd ~/Documents/Study/Programming/Repositories/";
 
       gcl = "git clone";
       gs = "git status";
@@ -66,7 +70,6 @@
     plugins = [
       { name = "grc"; src = pkgs.fishPlugins.grc.src; }
       { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-      { name = "gruvbox"; src = pkgs.fishPlugins.gruvbox.src; }
     ];
   };
 }
