@@ -48,17 +48,38 @@
     protectKernelImage = true;
     krb5.enable = true;
     rtkit.enable = true;
-  };
+    
+    pam.services = {
+      astal-auth = { };
+      greetd = {
+        gnupg.enable = true;
+        enableGnomeKeyring = true;
+      };
+      login = {
+        enableGnomeKeyring = true;
+        gnupg = {
+          enable = true;
+          noAutostart = true;
+          storeOnly = true;
+        };
+      };
+    };
+    
+    polkit.enable = true;
+    
+    sudo.enable = false;
 
-  security.sudo.enable = false;
-  security.doas.enable = true;
-  security.doas.extraRules = [{
-    users = ["yurimds"];
-    # Optional, retains environment variables while running commands 
-    # e.g. retains your NIX_PATH when applying your config
-    keepEnv = true; 
-    persist = true;  # Optional, only require password verification a single time
-  }];
+    doas = {
+      enable = true;
+      extraRules = [{
+        users = ["yurimds"];
+        # Optional, retains environment variables while running commands 
+        # e.g. retains your NIX_PATH when applying your config
+        keepEnv = true; 
+        persist = true;  # Optional, only require password verification a single time
+      }];
+    };
+  };
 
   # Enable the gnome-keyring secrets vault. 
   # Will be exposed through DBus to programs willing to store secrets.

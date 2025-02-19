@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     # Desktop
@@ -11,6 +11,7 @@
 
     # Applications
     ../features/applications/cava/default.nix
+    ../features/applications/obs-studio/default.nix
     ../features/applications/vesktop/default.nix
     ../features/applications/yazi/default.nix
     ../features/applications/zathura/default.nix
@@ -28,7 +29,40 @@
     ../features/terminal/alacritty
   ];
 
-  xdg.mimeApps.defaultApplications = {
+  options = {
+    var = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+    };
+    default = {
+      de = lib.mkOption {
+        type = lib.types.enum [
+          ""
+          "hyprland"
+        ];
+        default = "hyprland";
+      };
+      browser = lib.mkOption {
+        type = lib.types.enum [
+          "firefox"
+          "qutebrowser"
+        ];
+        default = "firefox";
+      };
+      terminal = lib.mkOption {
+        type = lib.types.enum [
+          "wezterm"
+          "ghostty"
+          "foot"
+          "kitty"
+        ];
+        default = "kitty";
+      };
+    };
+  };
+
+  config = {
+    xdg.mimeApps.defaultApplications = {
     "text/plain" = ["neovide.desktop"];
     "application/pdf" = ["zathura.desktop"];
     "image/*" = ["imv.desktop"];
@@ -57,7 +91,9 @@
     tor-browser
 
     # Media
-    obs-studio
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
+    droidcam
     mpv
     imv
     musikcube
@@ -82,5 +118,7 @@
     localsend
     nwg-look
     gowall
+    qalculate-gtk
   ];
-}
+  };
+  }

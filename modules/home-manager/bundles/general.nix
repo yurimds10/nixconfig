@@ -20,7 +20,7 @@
     unzip
     zip
     
-    ffmpeg
+    ffmpeg-full
     ffmpegthumbnailer
     imagemagick
     poppler

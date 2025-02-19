@@ -38,5 +38,7 @@
 
     # Games
     clonehero
+    mcpelauncher-ui-qt
+    mcpelauncher-client
   ];
 }

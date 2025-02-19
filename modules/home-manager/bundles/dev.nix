@@ -10,6 +10,9 @@
 
     jetbrains.idea-community
 
+    insomnia
+    drawio
+
     # Containers
     postman
 

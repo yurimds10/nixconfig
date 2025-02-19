@@ -1,12 +1,130 @@
 { pkgs, lib, config, ...}:
-{
-  imports = [ ./hyprpaper.nix ];
+  let
+    inherit (lib) mkIf;
 
-  wayland.windowManager.hyprland = with config.lib.stylix.colors; {
+    _ = lib.getExe;
+
+    # OCR (Optical Character Recognition) utility
+    ocrScript =
+      let
+        inherit (pkgs)
+          grim
+          libnotify
+          slurp
+          tesseract5
+          wl-clipboard
+        ;
+      in
+      pkgs.writeShellScriptBin "wl-ocr" ''
+        ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
+        ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
+      '';
+
+      # Volume control utility
+      volumectl = 
+        let
+          inherit (pkgs) libnotify pamixer libcanberra-gtk3;
+        in
+        pkgs.writeShellScriptBin "volumectl" ''
+          #!/usr/bin/env bash
+
+          case "$1" in
+          up)
+            ${_ pamixer} -i "$2"
+            ;;
+          down)
+            ${_ pamixer} -d "$2"
+            ;;
+          toggle-mute)
+            ${_ pamixer} -t
+            ;;
+          esac
+
+          volume_percentage="$(${_ pamixer} --get-volume)"
+          isMuted="$(${_ pamixer} --get-mute)"
+
+          if [ "$isMuted" = "true" ]; then
+            ${libnotify}/bin/notify-send --transient \
+            -u normal \
+            -a "VOLUMECTL" \
+            -i audio-volume-muted-symbolic \
+            "VOLUMECTL" "Volume Muted"
+          else
+            ${libnotify}/bin/notify-send --transient \
+              -u normal \
+              -a "VOLUMECTL" \
+              -h string:x-canonical-private-synchronous:volumectl \
+              -h int:value:"$volume_percentage" \
+              -i audio-volume-high-symbolic \
+              "VOLUMECTL" "Volume: $volume_percentage%"
+
+            ${libcanberra-gtk3}/bin/canberra-gtk-play -i audio-volume-change -d "volumectl"
+          fi
+      '';
+  in {
+  imports = [
+    ./config
+    ./hyprpaper.nix
+  ];
+
+  config = mkIf (config.default.de == "hyprland") {
+    home = {
+      packages = with pkgs; [
+        config.wayland.windowManager.hyprland.package
+
+        dbus
+        glib
+        grim
+        gtk3
+        libcanberra-gtk3
+        libnotify
+        pamixer
+        sassc
+        slurp
+        swappy
+        wl-clipboard
+        wf-recorder
+        wlr-randr
+        wlr-randr
+        xwaylandvideobridge
+        ydotool
+        wlprop
+        xorg.xprop
+
+        hyprpaper
+        networkmanagerapplet
+        rofi-wayland
+        wofi
+        wlogout
+        nwg-dock-hyprland
+
+        ocrScript
+        volumectl
+      ];
+
+      sessionVariables = {
+        QT_QPA_PLATFORM = "wayland";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        SDL_VIDEODRIVER = "wayland";
+        CLUTTER_BACKEND = "wayland";
+        GDK_BACKEND = "wayland,x11";
+        XDG_SESSION_TYPE = "wayland";
+        MOZ_ENABLE_WAYLAND = "1";
+        QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
+      };
+    };
+
+    wayland.windowManager.hyprland = with config.lib.stylix.colors; {
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      extraCommands = lib.mkBefore [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
     settings = {
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -59,9 +177,7 @@
       };
 
       #Could help when scaling and not pixelating
-      xwayland = {
-        force_zero_scaling = true;
-      };
+      xwayland.force_zero_scaling = true;
 
       # -----------------------------------------------------
       # General window decoration
@@ -109,7 +225,7 @@
       };
 
       # -----------------------------------------------------
-      # Keyboard Layout
+      # Input
       # -----------------------------------------------------
       input = {
         kb_layout = "br";
@@ -120,9 +236,7 @@
 
         follow_mouse = 1;
 
-        touchpad = {
-          natural_scroll = false;
-        };
+        touchpad.natural_scroll = false;
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
@@ -138,7 +252,7 @@
         enable_swallow = true;
         #no_direct_scanout = true; #for fullscreen games
         focus_on_activate = false;
-        swallow_regex = "^(kitty)$";
+        swallow_regex = "kitty|nautilus|waybar";
         #disable_autoreload = true;
       };
 
@@ -198,134 +312,16 @@
       ];
 
       # -----------------------------------------------------
-      # Keybindings
-      # -----------------------------------------------------
-      binds = {
-        workspace_back_and_forth = 1;
-        allow_workspace_cycles = 1;
-        pass_mouse_when_bound = 0;
-      };
-
-      "$mainMod" = "SUPER";
-
-      bind = [
-        # Applications Binds
-        "$mainMod      , F1                  , exec             , firefox"
-        "$mainMod      , F2                  , exec             , nautilus"
-        "$mainMod      , F11                 , exec             , sudo reboot"
-        "$mainMod      , F12                 , exec             , wlogout"
-        "$mainMod      , return              , exec             , kitty"
-
-        "$mainMod      , Q                   , killactive,"
-        "$mainMod SHIFT, M                   , exit,"
-        "$mainMod SHIFT, F                   , togglefloating,"
-        "$mainMod      , F                   , fullscreen,"
-        "$mainMod      , G                   , togglegroup,"
-        "$mainMod      , bracketleft         , changegroupactive, b"
-        "$mainMod      , bracketright        , changegroupactive, f"
-        "$mainMod      , S                   , exec             , rofi -show drun"
-        "$mainMod      , O                   , exec             , wofi --show drun"
-        "$mainMod      , A                   , pin              , active"
-        "$mainMod      , P                   , pseudo           ," # dwindle
-        "$mainMod      , T                   , togglesplit      ," # dwindle
-
-        # Move focus with mainMod + arrow keys
-        "$mainMod      , left                , movefocus      , l"
-        "$mainMod      , right               , movefocus      , r"
-        "$mainMod      , up                  , movefocus      , u"
-        "$mainMod      , down                , movefocus      , d"
-
-        "$mainMod      , h                   , movefocus      , l"
-        "$mainMod      , l                   , movefocus      , r"
-        "$mainMod      , k                   , movefocus      , u"
-        "$mainMod      , j                   , movefocus      , d"
-
-        "$mainMod SHIFT, h                   , movewindow     , l"
-        "$mainMod SHIFT, l                   , movewindow     , r"
-        "$mainMod SHIFT, k                   , movewindow     , u"
-        "$mainMod SHIFT, j                   , movewindow     , d"
-
-        # Switch workspaces with mainMod + [0-9]
-        "$mainMod      , 1                   , workspace      , 1"
-        "$mainMod      , 2                   , workspace      , 2"
-        "$mainMod      , 3                   , workspace      , 3"
-        "$mainMod      , 4                   , workspace      , 4"
-        "$mainMod      , 5                   , workspace      , 5"
-        "$mainMod      , 6                   , workspace      , 6"
-        "$mainMod      , 7                   , workspace      , 7"
-        "$mainMod      , 8                   , workspace      , 8"
-        "$mainMod      , 9                   , workspace      , 9"
-        "$mainMod      , 0                   , workspace      , 10"
-
-        # Move active window to a workspace with mainMod + SHIFT + [0-9]
-        "$mainMod SHIFT, 1                   , movetoworkspace, 1"
-        "$mainMod SHIFT, 2                   , movetoworkspace, 2"
-        "$mainMod SHIFT, 3                   , movetoworkspace, 3"
-        "$mainMod SHIFT, 4                   , movetoworkspace, 4"
-        "$mainMod SHIFT, 5                   , movetoworkspace, 5"
-        "$mainMod SHIFT, 6                   , movetoworkspace, 6"
-        "$mainMod SHIFT, 7                   , movetoworkspace, 7"
-        "$mainMod SHIFT, 8                   , movetoworkspace, 8"
-        "$mainMod SHIFT, 9                   , movetoworkspace, 9"
-        "$mainMod SHIFT, 0                   , movetoworkspace, 10"
-
-        # Example special workspace (scratchpad)
-        "$mainMod, M, togglespecialworkspace, magic"
-        "$mainMod SHIFT, S                   , movetoworkspace, special:magic"
-
-        # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod      , mouse_down          , workspace      , e+1"
-        "$mainMod      , mouse_up            , workspace      , e-1"
-
-        # Pipewire Sound
-        "              , XF86AudioRaiseVolume, exec           , wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        "              , XF86AudioLowerVolume, exec           , wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-
-        # Media Playback Binds
-        "              , XF86AudioPlay       , exec           , playerctl play-pause"
-        "              , XF86AudioNext       , exec           , playerctl next"
-        "              , XF86AudioPrev       , exec           , playerctl previous"
-        "              , XF86audiostop       , exec           , playerctl stop"
-
-        # Print Screen
-        ''              , print               , exec           , grim -g "$(slurp)"''
-        ''$mainMod      , print               , exec           , grim -g "$(slurp)" - | wl-copy''
-        ''$mainMod SHIFT, print               , exec           , grim -g "$(slurp)" - | swappy -f -''
-      ];
-
-      binde = [
-        "$mainMod SHIFT, h, moveactive, -20 0"
-        "$mainMod SHIFT, l, moveactive, 20 0"
-        "$mainMod SHIFT, k, moveactive, 0 -20"
-        "$mainMod SHIFT, j, moveactive, 0 20"
-
-        "$mainMod CTRL, l, resizeactive, 30 0"
-        "$mainMod CTRL, h, resizeactive, -30 0"
-        "$mainMod CTRL, k, resizeactive, 0 -10"
-        "$mainMod CTRL, j, resizeactive, 0 10"
-      ];
-
-        bindm = [
-        # Move/resize windows with mainMod + LMB/RMB and dragging
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
-      ];
-
-      # -----------------------------------------------------
       # Window rules
       # -----------------------------------------------------
-      windowrule = [
-        "tile,^(Microsoft-edge)$"
-        "tile,^(Brave-browser)$"
-        "tile,^(Chromium)$"
-        "float,^(pavucontrol)$"
-        "float,^(qalculate-gtk)$"
+      windowrulev2 = [
+        "float, class:^(qalculate-gtk)$"
 
         # Pavucontrol floating
-        "float,class:(.*org.pulseaudio.pavucontrol.*)"
-        "size 700 600,class:(.*org.pulseaudio.pavucontrol.*)"
-        "center,class:(.*org.pulseaudio.pavucontrol.*)"
-        "pin,class:(.*org.pulseaudio.pavucontrol.*)"
+        "float, class:^(pavucontrol)$"
+        "size 700 600, class:^(pavucontrol)$"
+        "center, class:^(pavucontrol)$"
+        "pin, class:^(pavucontrol)$"
 
         # System Mission Center
         "float, class:(io.missioncenter.MissionCenter)"
@@ -344,17 +340,16 @@
         "move 69.5% 4%, title:^(Picture-in-Picture)$"
       ];
     };
+    };
+
+    systemd.user.targets.tray = {
+      Unit = {
+        Description = "Home Manager System Tray";
+        Requires = [ "graphical-session-pre.target" ];
+      };
+    };
   };
 
-  home.packages = with pkgs; [
-    grim
-    slurp
-    swappy
-    wl-clipboard
-    hyprpaper
-    networkmanagerapplet
-    rofi-wayland
-    wofi
-    wlogout
-  ];
+  
+  
 }

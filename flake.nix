@@ -21,6 +21,9 @@
     # ColorSchemes
     stylix.url = "github:danth/stylix/ed91a20c84a80a525780dcb5ea3387dddf6cd2de";
 
+    # Hyperland / Wayland related flakes
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
     # Firefox Addons
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";

@@ -20,6 +20,8 @@
     };
   };
 
+  nix.settings.allowed-users = [ "yurimds" ];
+
   services.openssh = {
     enable = true;
     settings = {
