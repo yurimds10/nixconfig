@@ -86,7 +86,7 @@
         wf-recorder
         wlr-randr
         wlr-randr
-        xwaylandvideobridge
+        kdePackages.xwaylandvideobridge
         ydotool
         wlprop
         xorg.xprop

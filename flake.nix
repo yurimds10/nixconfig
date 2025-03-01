@@ -35,29 +35,25 @@
     nixvim.url = "github:yurimds10/nixvim";
   };
 
-  outputs = {
+  outputs = inputs@{
     self,
     nixpkgs,
+    nixpkgs-stable,
     home-manager-unstable,
     ...
-  } @ inputs:
-    let
-      inherit (self) outputs;
-  in {
+  }: {
     nixosConfigurations = {
-      "desktop" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+      "desktop" = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+
+        specialArgs = {
+          pkgs-stable = import nixpkgs-stable {
+            inherit system;
+          };
+        };
 
         modules = [
           ./hosts/desktop/configuration.nix
-        ];
-      };
-
-      "liveiso" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
-        
-        modules = [
-          ./hosts/liveiso/configuration.nix
         ];
       };
     };
@@ -68,27 +64,16 @@
     # };
 
     homeConfigurations = {
-      "yurimds@desktop" = home-manager-unstable.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      "yurimds@desktop" = home-manager-unstable.lib.homeManagerConfiguration rec {
+        system = "x86_64-linux";
         extraSpecialArgs = {
-          inherit inputs;
-          inherit outputs;
+          pkgs-stable = import nixpkgs-stable {
+            inherit system;
+          };
         };
         
         modules = [
           ./hosts/desktop/home.nix
-        ];
-      };
-
-      "yurimds@liveiso" = home-manager-unstable.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit outputs;
-        };
-
-        modules = [
-          ./hosts/liveiso/home.nix
         ];
       };
     };

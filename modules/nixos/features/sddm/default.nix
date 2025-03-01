@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  sddmTheme = import ./sddm-theme.nix {inherit pkgs;};
+  sddmTheme = import ./sddm-theme.nix { inherit pkgs; };
 in {
   services.displayManager.sddm = {
     enable = lib.mkDefault true;

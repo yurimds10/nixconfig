@@ -5,10 +5,11 @@
     
     sessionVariables = {
       LIBVIRTD_ARGS="";
-      NIXOS_CONFIG_DIR = "\${HOME}/nixconfig/";
+      
       XDG_CONFIG_HOME = "\${HOME}/.config";
       XDG_CACHE_HOME = "\${HOME}/.cache";
       XDG_DATA_HOME = "\${HOME}/.local/share";
+      NIXOS_CONFIG_DIR = "\${XDG_CONFIG_HOME}/nix/nixconfig/";
       NIXPKGS_ALLOW_INSECURE = "1";
       NIXPKGS_ALLOW_UNFREE = "1";
       POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";

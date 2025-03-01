@@ -37,8 +37,8 @@
     vulkan-utility-libraries
 
     # Games
-    clonehero
-    mcpelauncher-ui-qt
-    mcpelauncher-client
+    #clonehero
+    #mcpelauncher-ui-qt
+    #mcpelauncher-client
   ];
 }

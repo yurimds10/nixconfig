@@ -3,8 +3,8 @@
   programs.kitty = {
     enable = true;
     font = lib.mkDefault {
-      name = "JetBrainsMono Nerd Font";
-      size = 10.5;
+      name = "FantasqueSansM Nerd Font";
+      size = 13;
     };
     settings = {  
       enable_audio_bell = "no";
@@ -14,7 +14,7 @@
       disable_ligatures = "never";
       editor = "nvim";
 
-      font_family = lib.mkDefault "JetBrainsMonoNF-Medium";
+      font_family = lib.mkDefault "FantasqueSansM Nerd Font Medium";
       adjust_line_height = 3;
     };
 

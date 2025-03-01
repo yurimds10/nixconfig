@@ -1,13 +1,13 @@
 { pkgs, ... }:
 {
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   boot.kernelModules = [
     "v4l2loopback" # Webcam loopback
   ];
 
   boot.extraModulePackages = [
-    pkgs.linuxPackages.v4l2loopback # Webcam loopback
+    pkgs.linuxPackages_zen.v4l2loopback # Webcam loopback
   ];
 
   boot.extraModprobeConfig = ''

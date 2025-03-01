@@ -11,8 +11,8 @@
     #theme.package = pkgs.gruvbox-gtk-theme;
     #theme.name = "Gruvbox-Dark";
 
-    iconTheme.package = pkgs.gruvbox-plus-icons;
-    iconTheme.name = "Gruvbox-Plus-Dark";
+    #iconTheme.package = pkgs.gruvbox-plus-icons;
+    #iconTheme.name = "Gruvbox-Plus-Dark";
   };
 
   qt = {

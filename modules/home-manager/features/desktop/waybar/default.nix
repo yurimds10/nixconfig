@@ -4,9 +4,9 @@
     enable = true;
 
     
-    #package = pkgs.waybar.overrideAttrs (oldAttrs: {
-    #  mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    #});
+    package = pkgs.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+    });
 
     settings = with config.lib.stylix.colors; {
       mainBar = {
