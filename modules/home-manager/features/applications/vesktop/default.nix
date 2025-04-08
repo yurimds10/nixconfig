@@ -8,7 +8,7 @@
   ];
 
   xdg.configFile."vesktop/themes/nix-colors-theme.css" = {
-    text = with config.lib.stylix.colors; ''
+    text = with config.colorScheme.palette; ''
       .theme-dark {
         --background-primary: #${base01};
         /* background of background of chat window */

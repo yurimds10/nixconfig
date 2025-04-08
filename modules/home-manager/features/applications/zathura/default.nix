@@ -38,6 +38,7 @@
 
       recolor = "false";
       recolor-keephue = "false";
+      selection-clipboard = "clipboard";
     };
   };
 }

@@ -19,7 +19,7 @@
       in
       [
         # Applications Binds
-        "SUPER, S, exec, rofi -show drun"
+        "SUPER, D, exec, rofi -show drun"
         "SUPER, O, exec, wofi --show drun"
         "SUPER, F12, exec, wlogout"
         "SUPER, return, exec, kitty"
@@ -90,9 +90,7 @@
         ", XF86audiostop, exec, playerctl stop"
 
         # Screenshot
-        "SUPERSHIFT, print, exec, ${screenshot}/bin/screenshot a"
-        "SUPERALT, print, exec, ${screenshot}/bin/screenshot f"
-        ",print, exec, ${screenshot}/bin/screenshot f"
+        '', print, exec, grim -g "$(slurp)" - | swappy -f -''
       ];
 
       binde = [

@@ -19,8 +19,8 @@
     winetricks
 
     # Emulators
-    duckstation
-    snes9x
+    #duckstation
+    #snes9x
 
     # Tools
     protonup
@@ -37,7 +37,7 @@
     vulkan-utility-libraries
 
     # Games
-    #clonehero
+    clonehero
     #mcpelauncher-ui-qt
     #mcpelauncher-client
   ];

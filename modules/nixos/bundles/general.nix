@@ -6,6 +6,7 @@
     ../features/kernel/default.nix
     ../features/localization/default.nix
     ../features/nix/default.nix
+    ../features/nix-ld/default.nix
     ../features/network/default.nix
     ../features/sddm/default.nix
     ../features/security/default.nix

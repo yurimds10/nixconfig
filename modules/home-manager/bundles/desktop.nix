@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, inputs, pkgs, ... }:
 {
   imports = [
     # Desktop
@@ -19,10 +19,11 @@
     # Browsers
     ../features/browser/firefox/default.nix
     ../features/browser/chromium/default.nix
+    ../features/browser/librewolf/default.nix
 
     # Theme
     ../features/theme/gtk/default.nix
-    ../features/theme/stylix/default.nix
+    #../features/theme/stylix/default.nix
 
     # Terminals
     ../features/terminal/kitty/default.nix
@@ -72,6 +73,8 @@
   };
 
   home.packages = with pkgs; [
+    inputs.yt-x.packages."${system}".default
+
     # Polkit
     polkit
     polkit_gnome

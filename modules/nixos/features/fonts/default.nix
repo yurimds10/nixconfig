@@ -12,6 +12,7 @@
       nerd-fonts.iosevka-term
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-code
+      nerd-fonts.fantasque-sans-mono
     ];
 
     fontconfig = {
@@ -26,7 +27,7 @@
       defaultFonts = {
         serif = [  "New York Medium" ];
         sansSerif = [ "SF Pro Display" ];
-        monospace = [ "JetBrainsMono Nerd Font" ];
+        monospace = [ "FantasqueSansM Nerd Font" ];
       };
     };
   };

@@ -132,15 +132,15 @@ in {
         "signon.management.page.breach-alerts.enabled" = false;
       };
 
-      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+      extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
         ublock-origin
 
         sponsorblock
         return-youtube-dislikes
         youtube-shorts-block
 
+
         enhanced-github
-        refined-github
         github-file-icons
 
         stylus
@@ -148,11 +148,11 @@ in {
 
       search = {
         force = true;
-        default = "DuckDuckGo";
+        default = "ddg";
         order = [
-          "DuckDuckGo"
-          "Google"
-          "Youtube"
+          "ddg"
+          "google"
+          "youtube"
           "NixOS Options"
           "Nix Packages"
           "GitHub"
@@ -162,11 +162,11 @@ in {
         ];
 
         engines = {
-          "Bing".metaData.hidden = true;
-          "Amazon.com".metaData.hidden = true;
+          "bing".metaData.hidden = true;
+          "amazondotcom-us".metaData.hidden = true;
 
           "Nixvim" = {
-            iconUpdateURL = "https://github.com/nix-community/nixvim/raw/main/assets/nixvim_logo.svg";
+            icon = "https://github.com/nix-community/nixvim/raw/main/assets/nixvim_logo.svg";
             updateInterval = 24 * 60 * 60 * 1000;
             definedAliases = [ "@v" ];
             urls = [
@@ -181,8 +181,8 @@ in {
               }
             ];
           };
-          "YouTube" = {
-            iconUpdateURL = "https://youtube.com/favicon.ico";
+          "youTube" = {
+            icon = "https://youtube.com/favicon.ico";
             updateInterval = 24 * 60 * 60 * 1000;
             definedAliases = [ "@yt" ];
             urls = [
@@ -238,8 +238,8 @@ in {
             ];
           };
 
-          "GitHub" = {
-            iconUpdateURL = "https://github.com/favicon.ico";
+          "gitHub" = {
+            icon = "https://github.com/favicon.ico";
             updateInterval = 24 * 60 * 60 * 1000;
             definedAliases = [ "@gh" ];
 
@@ -274,7 +274,7 @@ in {
           };
 
           "HackerNews" = {
-            iconUpdateURL = "https://hn.algolia.com/favicon.ico";
+            icon = "https://hn.algolia.com/favicon.ico";
             updateInterval = 24 * 60 * 60 * 1000;
             definedAliases = [ "@hn" ];
 

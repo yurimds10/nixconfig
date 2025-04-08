@@ -114,7 +114,7 @@
       };
     };
 
-    wayland.windowManager.hyprland = with config.lib.stylix.colors; {
+    wayland.windowManager.hyprland = with config.colorScheme.palette; {
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
@@ -188,11 +188,11 @@
         shadow.enabled = false;
 
         active_opacity = 1.0;
-        inactive_opacity = 0.99;
+        inactive_opacity = 0.95;
 
         blur = {
-          enabled = false;
-          size = 3;
+          enabled = true;
+          size = 10;
           passes = 1;
           vibrancy = 0.1696;
         };

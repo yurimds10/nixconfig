@@ -9,14 +9,16 @@
       XDG_CONFIG_HOME = "\${HOME}/.config";
       XDG_CACHE_HOME = "\${HOME}/.cache";
       XDG_DATA_HOME = "\${HOME}/.local/share";
+
       NIXOS_CONFIG_DIR = "\${XDG_CONFIG_HOME}/nix/nixconfig/";
       NIXPKGS_ALLOW_INSECURE = "1";
       NIXPKGS_ALLOW_UNFREE = "1";
+
       POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
       GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+
       LIBVA_DRIVER_NAME = "nvidia";
       GBM_BACKEND = "nvidia-drm";
-      _JAVA_AWT_WM_NONREPARENTING = "1";
       DISABLE_QT5_COMPAT = "0";
       DIRENV_LOG_FORMAT = "";
       #LIBSEAT_BACKEND = "logind";
@@ -29,6 +31,9 @@
       __GL_VRR_ALLOWED = "0";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       __GL_THREADED_OPTIMIZATIONS = "0";
+
+      _JAVA_AWT_WM_NONREPARENTING = "1";
+      _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
 
       XDG_BACKEND = "wayland";
       XDG_SESSION_TYPE = "wayland";

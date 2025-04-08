@@ -5,11 +5,11 @@
       splash = false;
 
       preload = [
-        "~/Pictures/Wallpapers/sakura.png"
+        "~/Pictures/Wallpapers/wall.png"
       ];
 
       wallpaper = [
-        "HDMI-A-1,~/Pictures/Wallpapers/sakura.png"
+        "HDMI-A-1,~/Pictures/Wallpapers/wall.png"
       ];
     };
   };

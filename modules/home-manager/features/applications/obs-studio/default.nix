@@ -1,11 +1,11 @@
-{ pkgs-stable, pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.obs-studio = {
     enable = true;
-    package = pkgs-stable.obs-studio;
+    package = pkgs.obs-studio;
 
-    plugins = with pkgs-stable.obs-studio-plugins; [
+    plugins = with pkgs.obs-studio-plugins; [
       wlrobs
+      obs-pipewire-audio-capture
       obs-vkcapture
       obs-vaapi
       droidcam-obs

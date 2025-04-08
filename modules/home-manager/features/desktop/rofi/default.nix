@@ -4,7 +4,7 @@
 {
   home.packages = with pkgs; [rofi-wayland];
 
-  xdg.configFile."rofi/config.rasi".text = with config.stylix.base16Scheme; ''
+  xdg.configFile."rofi/config.rasi".text = with config.colorScheme.palette; ''
     /* =========================================== */
     /* Configuration                               */
     /* =========================================== */

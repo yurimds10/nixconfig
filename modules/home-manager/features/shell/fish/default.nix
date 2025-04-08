@@ -48,10 +48,10 @@
       vi = "nvim";
 
       nixconfig = "nvim $HOME/.config/nix/nixconfig/";
-      neovim = "nvim $HOME/.config/nix/nixvim/";
+      neovim = "nvim $HOME/.config/nvim/";
 
-      projects = "cd ~/Documents/Projects/Repositories/";
-      studies = "cd ~/Documents/Study/Programming/Repositories/";
+      projects = "cd ~/Documents/Projects/Repos/";
+      studies = "cd ~/Documents/Studies/Programming/Repos/";
 
       gcl = "git clone";
       gs = "git status";

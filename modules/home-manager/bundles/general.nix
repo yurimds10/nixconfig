@@ -44,11 +44,11 @@
     grex
     zoxide
     delta
-    nushell
 
     git
     wget
     fastfetch
+    nitch
     curl
     nil
     fish

@@ -1,18 +1,16 @@
-{
-  pkgs,
-  ...
-}: {
+{ pkgs, ... }: {
+
   gtk = {
     enable = true;
 
     cursorTheme.package = pkgs.capitaine-cursors-themed;
     cursorTheme.name = "Capitaine Cursors (Gruvbox) - White";
 
-    #theme.package = pkgs.gruvbox-gtk-theme;
-    #theme.name = "Gruvbox-Dark";
+    theme.package = pkgs.gruvbox-gtk-theme;
+    theme.name = "Gruvbox-Dark";
 
-    #iconTheme.package = pkgs.gruvbox-plus-icons;
-    #iconTheme.name = "Gruvbox-Plus-Dark";
+    iconTheme.package = pkgs.gruvbox-plus-icons;
+    iconTheme.name = "Gruvbox-Plus-Dark";
   };
 
   qt = {

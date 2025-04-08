@@ -61,6 +61,7 @@
     targets.hyprland.enable = false;
     targets.kde.enable = false;
     targets.firefox.enable = false;
+    targets.neovim.enable = false;
 
     autoEnable = true;
     enable = true;

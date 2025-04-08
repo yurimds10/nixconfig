@@ -19,7 +19,8 @@
     #nix-on-droid.home-manager.follows = "home-manager-stable";
 
     # ColorSchemes
-    stylix.url = "github:danth/stylix/ed91a20c84a80a525780dcb5ea3387dddf6cd2de";
+    #stylix.url = "github:danth/stylix/ed91a20c84a80a525780dcb5ea3387dddf6cd2de";
+    nix-colors.url = "github:misterio77/nix-colors";
 
     # Hyperland / Wayland related flakes
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -31,26 +32,25 @@
     # Minecraft
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
+    yt-x.url = "github:Benexl/yt-x";
+
     # Configs
-    nixvim.url = "github:yurimds10/nixvim";
+    #nixvim.url = "github:yurimds10/nvim";
   };
 
-  outputs = inputs@{
+  outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
     home-manager-unstable,
+    nix-colors,
     ...
-  }: {
+  }@ inputs:
+    let
+     inherit (self) outputs;
+    in {
     nixosConfigurations = {
-      "desktop" = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-
-        specialArgs = {
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-          };
-        };
+      "desktop" = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs outputs; };
 
         modules = [
           ./hosts/desktop/configuration.nix
@@ -64,12 +64,11 @@
     # };
 
     homeConfigurations = {
-      "yurimds@desktop" = home-manager-unstable.lib.homeManagerConfiguration rec {
-        system = "x86_64-linux";
+      "yurimds@desktop" = home-manager-unstable.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-          };
+          inherit inputs;
+          inherit outputs;
         };
         
         modules = [

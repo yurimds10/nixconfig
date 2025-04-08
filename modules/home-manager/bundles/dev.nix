@@ -3,18 +3,14 @@
   imports = [
     ../features/dev/git/default.nix
     ../features/dev/vscodium/default.nix
+    ../features/dev/neovim/default.nix
   ];
 
   home.packages = with pkgs; [
-    inputs.nixvim.packages.x86_64-linux.default
-
+    #inputs.nixvim.packages.x86_64-linux.default
     jetbrains.idea-community
 
     insomnia
-    drawio
-
-    # Containers
-    postman
 
     # JavaScript/TypeScript
     nodejs_22
@@ -28,10 +24,6 @@
     libgcc
     ccls
     gcc
-
-    # Nix
-    nixd
-    alejandra
 
     llvm_18
     go
