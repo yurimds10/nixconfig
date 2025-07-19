@@ -129,7 +129,8 @@
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "hyprpaper"
-        "waybar"
+        "hyprpanel"
+        "nwg-dock-hyprland -mb 10 -x"
       ];
 
       # -----------------------------------------------------
@@ -349,7 +350,4 @@
       };
     };
   };
-
-  
-  
 }

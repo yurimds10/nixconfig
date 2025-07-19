@@ -4,10 +4,10 @@
     inputs.stylix.nixosModules.stylix
   ];
   stylix = {
-    enable = false;
+    enable = true;
 
     base16Scheme = {
-      base00 = "292828";
+      base00 = "1d2021";
       base01 = "32302f";
       base02 = "504945";
       base03 = "665c54";

@@ -1,13 +1,17 @@
 { lib, ... }:
 {
   boot.loader = {
-    # Bootloader.
+    systemd-boot.enable = true;
     grub = {
-      enable = lib.mkDefault true;
-      device = "/dev/sda";
+      enable = false;
+      efiSupport = true;
+      device = "nodev";
+      efiInstallAsRemovable = false;
       useOSProber = false;
       gfxmodeBios = "1920x1080x32";
       gfxpayloadBios = "keep";
     };
+
+    efi.canTouchEfiVariables = true;
   };
 }

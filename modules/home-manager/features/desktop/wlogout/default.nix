@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 {
   programs.wlogout = {
-    enable = false;
+    enable = true;
     layout = [
       {
         label = "lock";

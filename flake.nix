@@ -13,21 +13,22 @@
     home-manager-stable.url = "github:nix-community/home-manager/release-24.11";
     home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
 
-    # nix-on-droid
-    #nix-on-droid.url = "github:nix-community/nix-on-droid/master";
-    #nix-on-droid.inputs.nixpkgs.follows = "nixpkgs";
-    #nix-on-droid.home-manager.follows = "home-manager-stable";
-
     # ColorSchemes
-    #stylix.url = "github:danth/stylix/ed91a20c84a80a525780dcb5ea3387dddf6cd2de";
+    stylix.url = "github:danth/stylix/ed91a20c84a80a525780dcb5ea3387dddf6cd2de";
     nix-colors.url = "github:misterio77/nix-colors";
 
-    # Hyperland / Wayland related flakes
+    # Hyprland / Wayland related flakes
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
+    # Hyprpanel
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpanel.inputs.nixpkgs.follows = "nixpkgs";
 
     # Firefox Addons
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     # Minecraft
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
@@ -43,10 +44,12 @@
     nixpkgs,
     home-manager-unstable,
     nix-colors,
+    hyprpanel,
     ...
   }@ inputs:
     let
-     inherit (self) outputs;
+      inherit (self) outputs;
+      system = "x86_64-linux";
     in {
     nixosConfigurations = {
       "desktop" = nixpkgs.lib.nixosSystem {
@@ -57,11 +60,6 @@
         ];
       };
     };
-
-    # nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
-    #   pkgs = import nixpkgs { system = "aarch64-linux"; };
-    #   modules = [ ./hosts/android/configuration.nix ];
-    # };
 
     homeConfigurations = {
       "yurimds@desktop" = home-manager-unstable.lib.homeManagerConfiguration {

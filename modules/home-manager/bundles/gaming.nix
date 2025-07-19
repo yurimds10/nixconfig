@@ -6,26 +6,37 @@
 
   programs.mangohud.enable = true;
 
+  #programs.steam.extraCompatPackages = with pkgs; [ proton-ge-bin ];
+
   home.packages = with pkgs; [
     # Launchers
     lutris
     steam
     steam-run
+    hydralauncher
 
     # wine-staging (version with experimental features)
-    wineWowPackages.staging
+    wineWowPackages.stagingFull
 
     # winetricks (all versions)
     winetricks
 
+    wineWowPackages.fonts
+
     # Emulators
-    #duckstation
-    #snes9x
+    duckstation
+    snes9x
+    pcsx2
 
     # Tools
     protonup
+    protonup-qt
+    protontricks
+    protonplus
+    vkd3d-proton
     gamemode
     dxvk
+    vkd3d
     gamescope
     mangohud
     glfw
@@ -38,7 +49,7 @@
 
     # Games
     clonehero
-    #mcpelauncher-ui-qt
-    #mcpelauncher-client
+    mcpelauncher-ui-qt
+    mcpelauncher-client
   ];
 }

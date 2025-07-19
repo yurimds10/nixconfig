@@ -24,7 +24,7 @@ in {
 
   config = mkIf cfg.enable {
     services.swaync = {
-      enable = true;
+      enable = false;
       package = pkgs.swaynotificationcenter;
 
       inherit settings;

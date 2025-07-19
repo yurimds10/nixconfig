@@ -3,6 +3,7 @@
   imports = [
     # Desktop
     ../features/desktop/hyprland/default.nix
+    #../features/desktop/hyprpanel/default.nix
     ../features/desktop/rofi/default.nix
     ../features/desktop/sway/default.nix
     ../features/desktop/swaync/default.nix
@@ -12,6 +13,7 @@
     # Applications
     ../features/applications/cava/default.nix
     ../features/applications/obs-studio/default.nix
+    ../features/applications/spicetify/default.nix
     ../features/applications/vesktop/default.nix
     ../features/applications/yazi/default.nix
     ../features/applications/zathura/default.nix
@@ -23,7 +25,7 @@
 
     # Theme
     ../features/theme/gtk/default.nix
-    #../features/theme/stylix/default.nix
+    ../features/theme/stylix/default.nix
 
     # Terminals
     ../features/terminal/kitty/default.nix
@@ -122,6 +124,8 @@
     nwg-look
     gowall
     qalculate-gtk
+
+    hyprpanel
   ];
   };
   }
